@@ -50,11 +50,17 @@ const reducer = (state = initState, action) => {
         counter: state.counter + 1,
       };
     case "ADD_USER":
-      // let newArr =[...state.accounts, action.payload]
-      console.log(action.payload);
       return {
         ...state,
         accounts: [...state.accounts, action.payload],
+      };
+    case "DELETE_USER":
+      let newArr = state.accounts.filter((ele) => {
+        return ele.id != action.payload;
+      });
+      return {
+        ...state,
+        accounts: newArr,
       };
   }
   return state;

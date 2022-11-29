@@ -8,6 +8,7 @@ import {
   MDBTableBody,
   MDBContainer,
   MDBBtn,
+  MDBIcon,
 } from "mdb-react-ui-kit";
 import Form from "./Form";
 
@@ -44,6 +45,7 @@ export function Home(props) {
         </MDBBtn>
       </div>
       <Form />
+      <h3>Number of accounts : {props.accounts.length}</h3>
       <MDBTable striped>
         <MDBTableHead>
           <tr>
@@ -61,6 +63,20 @@ export function Home(props) {
                 <td>{ele.customerName}</td>
                 <td>{ele.accountNumber}</td>
                 <td>{ele.accountType}</td>
+                <td>
+                  <MDBBtn
+                    color="danger"
+                    onClick={() => {
+                      dispatch({
+                        type: "DELETE_USER",
+                        payload: ele.id,
+                      });
+                    }}
+                  >
+                    <MDBIcon fas icon="trash" />
+                    delete
+                  </MDBBtn>
+                </td>
               </tr>
             );
           })}
