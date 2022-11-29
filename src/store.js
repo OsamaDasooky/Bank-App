@@ -33,15 +33,38 @@ const initState = {
       accountType: "Student accounts",
     },
   ],
+  counter: 10,
 };
 
 const reducer = (state = initState, action) => {
+  // eslint-disable-next-line default-case
+  switch (action.type) {
+    case "MINES_ONE":
+      return {
+        ...state,
+        counter: state.counter - 1,
+      };
+    case "ADD_ONE":
+      return {
+        ...state,
+        counter: state.counter + 1,
+      };
+    case "ADD_USER":
+      // let newArr =[...state.accounts, action.payload]
+      console.log(action.payload);
+      return {
+        ...state,
+        accounts: [...state.accounts, action.payload],
+      };
+  }
   return state;
 };
 
 export const propsToState = (props) => {
   return {
     accounts: props.accounts,
+    counter: props.counter,
   };
 };
+
 export const store = createStore(reducer);
